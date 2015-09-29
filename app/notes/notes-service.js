@@ -4,6 +4,7 @@
 
     notesService['$inject'] = ['$http', '$filter', '$state'];
     function notesService($http, $filter, $state){
+
       var notes = [];
       var nevernoteBasePath = 'https://nevernote-1150.herokuapp.com/api/v1/';
       var user = {
@@ -16,12 +17,15 @@
       }
 
       this.findById = function(noteId) {
-        return ($filter('filter')(notes, { id: parseInt(noteId) }, true)[0] || {});
+        return note = ($filter('filter')(notes, { id: parseInt(noteId) }, true)[0] || {});
+
+        //return angular.copy(note);
       }
 
       this.update = function(note) {
+        var self = this;
 
-        $http.put(nevernoteBasePath + 'notes/' + note.id, {
+        return $http.put(nevernoteBasePath + 'notes/' + note.id, {
           api_key: user.apiKey,
           note: {
             title: note.title,
@@ -31,8 +35,22 @@
         })
         .success(function(noteData){
           debugger;
-          console.log(noteData);
+
+          self.replaceNote(noteData.note);
         });
+
+      }
+
+      this.replaceNote = function(note) {
+          for (var i = 0; i < notes.length; i++) {
+
+            if (notes[i].id === note.id){
+              notes.splice(i,1);
+              notes.unshift(note);
+              break;
+            }
+
+          }
       }
 
       this.create = function(note) {
