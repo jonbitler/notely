@@ -41,6 +41,29 @@
 
       }
 
+      this.delete = function(note) {
+        var self = this;
+        return $http.delete(nevernoteBasePath + 'notes/' + note.id + '?api_key=' + user.apiKey, {
+
+        })
+        .success(function(result){
+          self.removeNote(note);
+        });
+      }
+
+      this.removeNote = function(note) {
+        for (var i = 0; i < notes.length; i++) {
+
+          if (note.id === note.id){
+            //could use array map
+            notes.splice(i,1);
+            
+            break;
+          }
+
+        }
+      }
+
       this.replaceNote = function(note) {
           for (var i = 0; i < notes.length; i++) {
 
@@ -79,10 +102,7 @@
           });
 
         return notes;
-
       };
-
-
     }
 
 

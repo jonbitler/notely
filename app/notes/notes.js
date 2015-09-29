@@ -49,6 +49,15 @@
         }
       }
 
+      $scope.delete = function() {
+        notes.delete($scope.note)
+        .success(
+          function {
+            $state.go('notes.form', {noteId: undefined});
+
+          });
+      }
+
       $scope.save = function(){
         if ($scope.note.id){
           notes.update($scope.note).success(
