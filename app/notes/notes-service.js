@@ -19,6 +19,24 @@
         return ($filter('filter')(notes, { id: parseInt(noteId) }, true)[0] || {});
       }
 
+      this.save = function(note) {
+
+        $http.post(nevernoteBasePath + 'notes', {
+          api_key: user.apiKey,
+          note: {
+            title: note.title,
+            body_html: note.body_html
+          }
+
+        })
+        .success(function(noteData){
+          notes.unshift(noteData.note); //adds to beginning of array
+
+          console.log(notes[note.length - 1]);
+        });
+
+      }
+
       this.fetchNotes = function(callback){
 
         $http.get(nevernoteBasePath + 'notes?api_key=' + user.apiKey)
