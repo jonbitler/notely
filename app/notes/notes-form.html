@@ -8,12 +8,7 @@
       placeholder="Just start typing..." ng-model="note.body_html"></textarea>
   </p>
   <div class="form-actions">
-    <span ng-if="note.id">
-      <input type="submit" name="commit" value="Edit" class="btn btn-default">
-    </span>
-    <span ng-if="!note.id">
-      <input type="submit" name="commit" value="Save" class="btn btn-default">
-    </span>
+    <input type="submit" name="commit" value="{{ buttonText() }}" class="btn btn-default">
 
 
   </div>

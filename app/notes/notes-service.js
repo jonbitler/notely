@@ -45,6 +45,7 @@
           for (var i = 0; i < notes.length; i++) {
 
             if (notes[i].id === note.id){
+              //could use array map
               notes.splice(i,1);
               notes.unshift(note);
               break;
