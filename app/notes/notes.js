@@ -12,6 +12,11 @@
         .state('notes', {
           url: '/notes',
           abstract: true, //can't really go here, only exists for the children
+          resolve: {
+            notePromise: function(notes){
+              return notes.fetchNotes();
+            }
+          },
           templateUrl: '/notes/notes.html',
           controller: NotesController
         })
@@ -25,13 +30,8 @@
 
     NotesController['$inject'] = ['$scope', '$state', 'notes'];
     function NotesController($scope, $state, notes) {
-      notes.fetchNotes(function(notes){
-        // console.log('Callback');
-        $scope.notes = notes;
 
-      });
-
-
+      $scope.notes = notes.all();
 
     }
 
