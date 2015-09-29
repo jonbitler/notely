@@ -1,6 +1,7 @@
 (function() {
   angular.module('notely.notes', [
-    'ui.router'
+    'ui.router',
+    'textAngular'
   ])
     .config(notesConfig);
 
@@ -39,6 +40,8 @@
     function NotesFormController($scope, $state, notes) {
 
       $scope.note = angular.copy(notes.findById($state.params.noteId));
+      $scope.$broadcast('noteLoaded');
+
 
       $scope.buttonText = function() {
         if ($scope.note.id) {
@@ -50,9 +53,8 @@
       }
 
       $scope.delete = function() {
-        notes.delete($scope.note)
-        .success(
-          function {
+        notes.delete($scope.note).success(
+          function() {
             $state.go('notes.form', {noteId: undefined});
 
           });
@@ -71,6 +73,7 @@
         }
 
       }
+
 
     }
 

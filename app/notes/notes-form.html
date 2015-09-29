@@ -1,15 +1,19 @@
 <form ng-submit="save()">
   <p>
-    <input type="text" name="title" id="note_title" ng-model="note.title" placeholder="Title your note">
+    <input type="text" name="title" id="note_title" ng-model="note.title" placeholder="Title your note" bd-focus-on="noteLoaded">
   </p>
   <p>
-    <textarea
+    <text-angular
       name="body_html"
-      placeholder="Just start typing..." ng-model="note.body_html"></textarea>
+      placeholder="Just start typing..." ng-model="note.body_html" ta-toolbar="[
+        ['bold', 'italics', 'underline'],
+        ['ul', 'ol', 'indent', 'outdent'],
+        ['html'],
+        ['insertLink']]"></text-angular>
   </p>
   <div class="form-actions">
     <input type="submit" name="commit" value="{{ buttonText() }}" class="btn btn-default">
-    <a ng-show="note.id" ng-click="delete()">Delete</a>
+    <a ng-show="note.id" ng-click="delete()"><i class="fa fa-trash-o"></i></a>
 
   </div>
 </form>
