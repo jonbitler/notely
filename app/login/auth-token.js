@@ -16,6 +16,13 @@
         return authToken;
       }
 
+      this.clear = function() {
+        authToken = undefined;
+        $window.localStorage.removeItem('authToken');
+
+
+      }
+
     }
 
 })();
