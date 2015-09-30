@@ -20,10 +20,13 @@
   LoginController['$inject'] = ['$scope', '$state'];
   function LoginController($scope, $state) {
 
-    debugger;
+    $scope.login = function () {
 
+
+
+      $state.go('notes.form');
+
+    }
   }
-
-
 
 })();
