@@ -1,5 +1,5 @@
 angular.module('notely')
-  .directive('bdNotesList', function(notes){
+  .directive('bdNotesList', function(){
     return {
       restrict: 'E',
       replace: true,
@@ -10,8 +10,8 @@ angular.module('notely')
 
     };
 
-    //NotesListController['$inject'] = ['notes']
-    function NotesListController() {
+    NotesListController['$inject'] = ['notes']
+    function NotesListController(notes) {
       this.notes = notes.all();
 
     }
