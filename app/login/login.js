@@ -23,7 +23,8 @@
 
     $scope.login = function () {
       login.login($scope.user).success( function() {
-        $state.go('notes.form');
+        //$state.go('notes.form');
+        
       });
 
     }
