@@ -14,6 +14,7 @@
         url: '/login',
         templateUrl: '/login/login.html',
         controller: LoginController
+
       })
   }
 
@@ -22,9 +23,7 @@
     $scope.user = {};
 
     $scope.login = function () {
-      
       login.login($scope.user).success( function() {
-        debugger;
         $state.go('notes.form');
       });
 
