@@ -14,6 +14,7 @@
           url: '/notes',
           abstract: true, //can't really go here, only exists for the children
           resolve: {
+            //only call controller once this promise is resolved
             notePromise: function(notes){
               return notes.fetchNotes();
             }
@@ -26,6 +27,7 @@
           url: '/:noteId',
           templateUrl: '/notes/notes-form.html',
           controller: NotesFormController
+          //since it's a child it will always run the parent view and parent controller first
         });
     }
 
@@ -40,8 +42,6 @@
     function NotesFormController($scope, $state, notes) {
 
       $scope.note = angular.copy(notes.findById($state.params.noteId));
-      $scope.$broadcast('noteLoaded');
-
 
       $scope.buttonText = function() {
         if ($scope.note.id) {
