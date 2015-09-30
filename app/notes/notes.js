@@ -29,6 +29,7 @@
           controller: NotesFormController
           //since it's a child it will always run the parent view and parent controller first
         });
+
     }
 
     NotesController['$inject'] = ['$scope', '$state', 'notes'];
