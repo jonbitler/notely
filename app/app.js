@@ -3,7 +3,8 @@
     'ui.router',
     'notely.notes',
     'notely.notes.service',
-    'notely.login'
+    'notely.login',
+    'notely.login.service'
   ]);
 
   function config($urlRouterProvider) {
